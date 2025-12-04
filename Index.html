@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Générateur Newsletter Pro (Vanilla)</title>
+    <!-- Tailwind CSS (Style de l'interface uniquement) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Icônes -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .bg-indigo-600 { background-color: #9ad2d9 !important; }
+        .text-indigo-700 { color: #9ad2d9 !important; }
+        .bg-indigo-50 { background-color: #eef8f9 !important; }
+        .border-indigo-100 { border-color: #d0e8ec !important; }
+        .accent-indigo-600 { accent-color: #9ad2d9 !important; }
+        .text-indigo-600 { color: #9ad2d9 !important; }
+        .focus\:border-indigo-600:focus { border-color: #9ad2d9 !important; }
+        .focus\:border-indigo-500:focus { border-color: #9ad2d9 !important; }
+        .hover\:bg-indigo-700:hover { background-color: #82c4ce !important; }
+        .hover\:bg-indigo-100:hover { background-color: #eef8f9 !important; }
+        .hover\:bg-indigo-50:hover { background-color: #eef8f9 !important; }
+        .hover\:text-indigo-600:hover { color: #9ad2d9 !important; }
+
+
+        .border-orange-300 { border-color: #f29f05 !important; }
+        .ring-orange-100 { --tw-ring-color: #fef5e6 !important; }
+        .bg-orange-500 { background-color: #f29f05 !important; }
+        .text-orange-500 { color: #f29f05 !important; }
+        .hover\:text-orange-500:hover { color: #f29f05 !important; }
+    </style>
+</head>
+<body>
+
+    <!-- BARRE D'OUTILS -->
+    <header class="bg-white border-b border-gray-200 px-6 py-3 flex justify-between items-center shadow-sm z-20 shrink-0">
+        <div class="flex items-center gap-3">
+            <div class="bg-blue-500 text-white p-2 rounded-lg" style="background-color: #9ad2d9;">
+                <i data-lucide="mail"></i>
+            </div>
+            <div>
+                <h1 class="text-lg font-bold text-gray-800">Newsletter Builder</h1>
+                <p class="text-xs text-gray-500">Design Modernisé • Stable</p>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <p class="text-sm text-gray-500" id="previewDate"></p>
+            <!-- Option Figer les images -->
+            <label class="flex items-center gap-2 text-xs font-bold text-blue-700 bg-blue-50 border border-blue-100 px-3 py-1.5 rounded-full cursor-pointer hover:bg-blue-100 transition" style="color: #9ad2d9; background-color: #eef8f9; border-color: #d0e8ec;">
+                <input type="checkbox" id="checkFreeze" class="accent-blue-600" style="accent-color: #9ad2d9;">
+                <i data-lucide="scissors" class="w-3 h-3"></i>
+                Figer images (Outlook)
+            </label>
+
+            <!-- Boutons Vue -->
+            <div class="bg-gray-100 p-1 rounded-lg flex">
+                <button onclick="setMode('desktop')" id="btnDesktop" class="p-2 rounded bg-white shadow text-blue-600" style="color: #9ad2d9;"><i data-lucide="monitor" class="w-4 h-4"></i></button>
+                <button onclick="setMode('mobile')" id="btnMobile" class="p-2 rounded text-gray-500 hover:bg-white/50"><i data-lucide="smartphone" class="w-4 h-4"></i></button>
+            </div>
+
+            <!-- Bouton Copier -->
+            <button onclick="copyHTML()" id="btnCopy" class="flex items-center gap-2 px-5 py-2 rounded-lg font-bold bg-blue-600 text-white hover:bg-blue-700 transition shadow-sm active:transform active:scale-95" style="background-color: #9ad2d9;">
+                <i data-lucide="code-2" class="w-4 h-4"></i>
+                <span>Générer le Code</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="flex flex-1 overflow-hidden relative">
+        
+        <!-- SIDEBAR ÉDITEUR (GAUCHE) -->
+        <div class="w-1/3 min-w-[400px] max-w-[500px] bg-white border-r border-gray-200 flex flex-col z-10">
+            <div class="flex-1 overflow-y-auto p-6 space-y-8">
+                
+                <!-- Section En-tête -->
+                <section>
+                    <h2 class="text-xs uppercase tracking-wider text-gray-400 font-bold mb-4 border-b pb-2">En-tête & Intro</h2>
+                    <div class="space-y-3">
+                        <div class="group">
+                            <label class="block text-[10px] uppercase font-bold text-gray-400 mb-1">Date</label>
+                            <input type="text" id="inpDate" class="w-full border-b border-gray-300 focus:border-blue-600 outline-none py-1 text-sm bg-transparent transition-colors" placeholder="Date...">
+                        </div>
+
+                        <div class="group pt-2">
+                            <label class="block text-[10px] uppercase font-bold text-gray-400 mb-1">Introduction</label>
+                            <textarea id="inpIntro" rows="3" class="w-full border rounded p-2 text-sm focus:border-blue-600 outline-none bg-gray-50" placeholder="Votre texte d'introduction..."></textarea>
+                        </div>
+                        <div class="group">
+                            <label class="block text-[10px] uppercase font-bold text-gray-400 mb-1">Titre Newsletter</label>
+                            <input type="text" id="inpNewsletterTitle" class="w-full border-b border-gray-300 focus:border-blue-600 outline-none py-1 text-sm bg-transparent transition-colors" placeholder="Titre de la newsletter...">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Section Blocs -->
+                <section>
+                    <div class="flex justify-between items-center mb-4 border-b pb-2">
+                        <h2 class="text-xs uppercase tracking-wider text-gray-400 font-bold">Blocs de contenu</h2>
+                        <div class="flex items-center gap-2">
+                            <button onclick="addSpecialBlock()" class="text-orange-500 hover:bg-orange-50/50 px-2 py-1 rounded text-xs font-bold flex items-center gap-1 transition-colors">
+                                <i data-lucide="archive" class="w-3 h-3"></i> Retour sur...
+                            </button>
+                            <button onclick="addBlock()" class="text-blue-600 hover:bg-blue-50 px-2 py-1 rounded text-xs font-bold flex items-center gap-1 transition-colors" style="color: #9ad2d9;">
+                                <i data-lucide="plus-circle" class="w-3 h-3"></i> Ajouter
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="blocksList" class="space-y-4">
+                        <!-- Les blocs seront injectés ici par JS -->
+                    </div>
+                </section>
+
+                <!-- Section Footer -->
+                <section class="pb-10">
+                     <h2 class="text-xs uppercase tracking-wider text-gray-400 font-bold mb-4 border-b pb-2">Pied de page</h2>
+                     <div class="space-y-4">
+                        <div>
+                            <label class="block text-[10px] uppercase font-bold text-gray-400 mb-1">Copyright</label>
+                            <input type="text" id="inpFooter" class="w-full border-b border-gray-300 focus:border-blue-600 outline-none py-1 text-sm bg-transparent transition-colors" placeholder="Texte de copyright...">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] uppercase font-bold text-gray-400 mb-1">Lien de désinscription</label>
+                            <input type="text" id="inpUnsubscribe" class="w-full border-b border-gray-300 focus:border-blue-600 outline-none py-1 text-sm bg-transparent transition-colors" placeholder="URL...">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 pt-4">
+                            <div>
+                                <label class="block text-[10px] uppercase font-bold text-gray-400 mb-1">Contact 1 - Titre</label>
+                                <input type="text" id="inpContact1Title" class="w-full border-b border-gray-300 focus:border-blue-600 outline-none py-1 text-sm bg-transparent transition-colors" placeholder="Titre colonne 1...">
+                                <label class="block text-[10px] uppercase font-bold text-gray-400 mb-1 mt-2">Contact 1 - Détails</label>
+                                <textarea id="inpContact1Details" rows="4" class="w-full border rounded p-2 text-sm focus:border-blue-600 outline-none bg-gray-50" placeholder="Adresse..."></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-[10px] uppercase font-bold text-gray-400 mb-1">Contact 2 - Titre</label>
+                                <input type="text" id="inpContact2Title" class="w-full border-b border-gray-300 focus:border-blue-600 outline-none py-1 text-sm bg-transparent transition-colors" placeholder="Titre colonne 2...">
+                                <label class="block text-[10px] uppercase font-bold text-gray-400 mb-1 mt-2">Contact 2 - Détails</label>
+                                <textarea id="inpContact2Details" rows="4" class="w-full border rounded p-2 text-sm focus:border-blue-600 outline-none bg-gray-50" placeholder="Adresse..."></textarea>
+                            </div>
+                        </div>
+                     </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- ZONE APERÇU (DROITE) -->
+        <div class="flex-1 bg-slate-100 relative flex flex-col items-center justify-center p-8 overflow-hidden">
+            
+            <div class="absolute top-4 left-4 flex gap-2 pointer-events-none z-0">
+                <div class="bg-white/80 backdrop-blur px-3 py-1.5 rounded-full text-xs font-medium text-gray-600 shadow-sm border border-gray-200 flex items-center gap-2">
+                    <i data-lucide="move" class="w-3 h-3"></i> Glissez sur l'image pour recadrer
+                </div>
+            </div>
+
+            <!-- Conteneur simulé (Sera rempli par le rendu JS) -->
+            <div id="previewContainer" class="bg-white shadow-2xl transition-all duration-500 ease-in-out overflow-y-auto overflow-x-hidden relative">
+                <!-- Le HTML de l'email sera injecté ici -->
+            </div>
+
+        </div>
+
+        <!-- POPUP CODE SOURCE -->
+        <div id="codeModal" class="fixed inset-0 bg-gray-800/60 backdrop-blur-sm flex items-center justify-center p-8 z-50 hidden">
+            <div class="bg-white rounded-lg shadow-2xl w-full max-w-4xl max-h-full flex flex-col">
+                <div class="flex justify-between items-center px-6 py-4 border-b border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-800 flex items-center gap-2">
+                        <i data-lucide="code-2" class="w-5 h-5 text-indigo-600"></i>
+                        Code HTML Généré
+                    </h3>
+                    <button onclick="toggleModal(false)" class="text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-full p-1 transition">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                </div>
+                <div class="flex-1 p-6 overflow-y-auto">
+                    <textarea id="codeOutput" class="w-full h-full min-h-[40vh] p-4 font-mono text-xs text-gray-700 bg-slate-50 border border-gray-200 rounded-md outline-none resize-none" readonly></textarea>
+                </div>
+                <div class="px-6 py-4 bg-gray-50 border-t border-gray-200 flex justify-end gap-3">
+                    <button onclick="toggleModal(false)" class="px-4 py-2 text-sm font-bold text-gray-600 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 transition">
+                        Fermer
+                    </button>
+                    <button onclick="copyFromTextarea()" class="px-4 py-2 text-sm font-bold text-white bg-indigo-600 rounded-lg hover:bg-indigo-700 transition flex items-center gap-2">
+                        <i data-lucide="copy" class="w-4 h-4"></i>
+                        Copier le code
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- LOGIQUE JS -->
+    <script src="script.js"></script>
+</body>
+</html>

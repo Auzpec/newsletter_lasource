@@ -1,0 +1,14 @@
+body { background-color: #f3f4f6; height: 100vh; overflow: hidden; display: flex; flex-direction: column; font-family: 'Atkinson Hyperlegible', system-ui, -apple-system, sans-serif; }
+/* Scrollbar propre */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+/* Classes utilitaires pour la preview */
+.cursor-grab { cursor: grab; }
+.cursor-grabbing { cursor: grabbing; }
+
+/* Animation du tiroir de code */
+#codeDrawer { transition: transform 0.3s ease-in-out; }
+.drawer-open { transform: translateY(0) !important; }
