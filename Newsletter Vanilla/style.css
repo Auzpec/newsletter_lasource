@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:400,700&display=swap');
-
 body { background-color: #f3f4f6; height: 100vh; overflow: hidden; display: flex; flex-direction: column; font-family: 'Atkinson Hyperlegible', system-ui, -apple-system, sans-serif; }
 /* Scrollbar propre */
 ::-webkit-scrollbar { width: 6px; }
