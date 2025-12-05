@@ -472,7 +472,7 @@ function renderPreview() {
         return `
         <div style="${wrapperStyle}">
             <!-- CONTENEUR INTERNE AVEC BORDURE GAUCHE FIXE (4px) -->
-            <div style="border-left: 4px solid ${borderColor}; background-color: ${bgContent}; padding: 0 10px; box-sizing: border-box; height: 100%;">
+            <div style="border-left: 4px solid ${borderColor}; background-color: ${bgContent}; padding: 0 10px 30px; box-sizing: border-box; height: 100%;">
                 ${imgInteractive}
                 <div style="height: 44px; overflow: hidden; margin-bottom: 12px;">
                     <h3 style="color: #1f2937; font-size: 18px; font-family: 'Atkinson Hyperlegible', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 700; margin: 0; line-height: 22px; text-transform: uppercase; letter-spacing: 0.5px;">${item.title}</h3>
@@ -480,7 +480,7 @@ function renderPreview() {
                 <div style="${item.isSpecial ? 'height: auto; margin-bottom: 24px;' : 'height: 88px; overflow: hidden; margin-bottom: 24px; display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical;'}">
                     <p style="color: #4b5563; font-size: 14px; line-height: 22px; margin: 0; font-family: 'Atkinson Hyperlegible', 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: justify;" id="desc-${item.id}"></p>
                 </div>
-                ${item.hasButton ? `<a href="${item.link}" style="display: inline-block; background-color: #333; color: #fff; text-decoration: none; padding: 10px 20px; border-radius: 50px; font-size: 12px; font-family: 'Atkinson Hyperlegible', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: bold; text-transform: uppercase;">Voir +</a>` : ''}
+                ${item.hasButton !== false ? `<a href="${item.link}" style="display: inline-block; background-color: #333; color: #fff; text-decoration: none; padding: 8px 28px; border-radius: 3px; font-size: 12px; font-family: 'Atkinson Hyperlegible', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: bold; text-transform: uppercase;">Voir +</a>` : ''}
             </div>
         </div>`;
     }).join('');
@@ -497,7 +497,7 @@ function renderPreview() {
                                     <img src="https://zupimages.net/up/24/49/w5j8.png" alt="Logo" width="50">
                                 </td>
                                 <td align="right">
-                                    <span style="background-color: #f29f05; color: #ffffff; padding: 8px 15px; border-radius: 20px; font-size: 12px; font-weight: bold;">${state.date}</span>
+                                    <span style="background-color: #f29f05; color: #ffffff; padding: 8px 15px; border-radius: 3px; font-size: 12px; font-weight: bold;">${state.date}</span>
                                 </td>
                             </tr>
                         </table>
@@ -672,7 +672,7 @@ function generateEmailString(items) {
             <!-- TABLEAU INTERNE POUR BORDURE GAUCHE -->
             <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-left: 4px solid ${borderColor}; background-color: ${bgContent};">
                 <tr>
-                    <td style="padding: 0 10px;">
+                    <td style="padding: 0 10px 30px;">
                         <div style="width: 100%; height: ${FIXED_HEIGHT}px; overflow: hidden; margin-bottom: 24px;">
                             <img src="${item.img}" alt="${item.title}" class="mobile-img" style="${imgCss}">
                         </div>
@@ -682,7 +682,7 @@ function generateEmailString(items) {
                         <div style="${item.isSpecial ? 'height: auto; margin-bottom: 24px;' : 'height: 88px; overflow: hidden; margin-bottom: 24px;'}">
                             <p class="justify-text" style="color: #4b5563; font-size: 14px; line-height: 22px; margin: 0; font-family: 'Atkinson Hyperlegible', 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: justify;">${item.desc.replace(/\n/g, '<br>')}</p>
                         </div>
-                        ${item.hasButton ? `<a href="${item.link}" style="display: inline-block; background-color: #333; color: #fff; text-decoration: none; padding: 10px 20px; border-radius: 50px; font-size: 12px; font-family: 'Atkinson Hyperlegible', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: bold; text-transform: uppercase;">Voir +</a>` : ''}
+                        ${item.hasButton !== false ? `<a href="${item.link}" style="display: inline-block; background-color: #333; color: #fff; text-decoration: none; padding: 8px 28px; border-radius: 3px; font-size: 12px; font-family: 'Atkinson Hyperlegible', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: bold; text-transform: uppercase;">Voir +</a>` : ''}
                     </td>
                 </tr>
             </table>
@@ -727,7 +727,7 @@ function generateEmailString(items) {
                                             <img src="https://zupimages.net/up/24/49/w5j8.png" alt="Logo" width="50">
                                         </td>
                                         <td align="right" style="font-family: 'Atkinson Hyperlegible', sans-serif;">
-                                            <span style="background-color: #f29f05; color: #ffffff; padding: 8px 15px; border-radius: 20px; font-size: 12px; font-weight: bold;">${state.date}</span>
+                                            <span style="background-color: #f29f05; color: #ffffff; padding: 8px 15px; border-radius: 3px; font-size: 12px; font-weight: bold;">${state.date}</span>
                                         </td>
                                     </tr>
                                 </table>
