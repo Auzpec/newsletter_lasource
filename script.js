@@ -1,5 +1,6 @@
 // --- ETAT DE L'APPLICATION ---
 const state = {
+    introFirst: true,
     title: "",
     subtitle: "",
     date: "4 décembre 2025",
@@ -28,88 +29,80 @@ const state = {
         }
     ],
     items: [
-        // BLOC 1 : TITRE
         {
             id: 1, 
-            title: "1. Titres Percutants", 
-            desc: "Le titre doit être court et incitatif. Évitez les phrases trop longues. Ici, nous utilisons un bloc '2/3' pour laisser de la place au texte. N'hésitez pas à utiliser des verbes d'action.", 
+            title: "Un Titre qui Claque", 
+desc: "Le titre doit vraiment donner envie aux adhérents de lire la suite. Ce bloc '2/3', c’est un peu la zone magique : y’a de la place pour raconter plein de trucs… mais attention, au bout de 4 lignes, c’est '...' et hop, plus personne ne saura la fin. Suspense garanti ! Alors autant accrocher tout le monde dès le début. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vel nulla a eros mattis maximus. Duis diam sapien, maximus et sem eget, pretium semper metus. Duis nisi sem, eleifend vel ullamcorper ac, aliquam quis urna. Praesent porttitor in ipsum sed ultrices.",
             img: "https://images.unsplash.com/photo-1511192336575-5a79af67a629?auto=format&fit=crop&w=600&q=80", 
             link: "#", 
             span: 2, 
             highlight: true, 
             pos: {x: 50, y: 50} 
         },
-        // BLOC 2 : IMAGES
         {
             id: 2, 
-            title: "2. Belles Images", 
-            desc: "Une image vaut 1000 mots. Cliquez sur l'image à droite et glissez pour la recadrer parfaitement !", 
+            title: "L'Art du Recadrage", 
+desc: "On choisit une image qui en jette, et on la recadre histoire de ne garder que l’essentiel. Pour les adhérents, c’est juste une belle image bien placée. Pour nous, c’est carrément un super pouvoir (ultra facile à utiliser ! :p) : on glisse l’image dans l’aperçu et hop, magie. Ce texte est un poil long, juste pour vérifier que ça coupe bien. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vel nulla a eros mattis maximus. Duis diam sapien, maximus et sem eget, pretium semper metus. Duis nisi sem, eleifend vel ullamcorper ac, aliquam quis urna. Praesent porttitor in ipsum sed ultrices.",
             img: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80", 
             link: "#", 
             span: 1, 
             highlight: false, 
             pos: {x: 50, y: 30} 
         },
-        // BLOC 3 : DESCRIPTION
         {
             id: 3, 
-            title: "3. Textes Courts", 
-            desc: "Allez à l'essentiel. Ce bloc '1/3' est idéal pour présenter 3 actualités côte à côte. La description est limitée à 4 lignes pour garder un design propre.", 
+            title: "Les Petites Nouvelles", 
+desc: "Les blocs '1/3' sont parfaits pour les infos rapides. On peut en caser trois sur une ligne, comme ça les adhérents ont un aperçu express des actus. Le texte est coupé après 4 lignes pour que ça reste digeste… même si, soyons honnêtes, on a toujours envie de raconter toute notre vie. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vel nulla a eros mattis maximus. Duis diam sapien, maximus et sem eget, pretium semper metus. Duis nisi sem, eleifend vel ullamcorper ac, aliquam quis urna. Praesent porttitor in ipsum sed ultrices.",
             img: "https://images.unsplash.com/photo-1565193566173-7a0ee3dbe261?auto=format&fit=crop&w=600&q=80", 
             link: "#", 
             span: 1, 
             highlight: false, 
             pos: {x: 50, y: 50} 
         },
-        // BLOC 4 : BOUTONS
         {
             id: 4, 
-            title: "4. Appel à l'action", 
-            desc: "Le bouton 'Voir +' est crucial. Vérifiez toujours votre lien dans l'éditeur à gauche (champ avec l'icône chaîne).", 
+            title: "Le Bouton Magique", 
+desc: "Ce bouton 'Voir +' est la porte d'entrée vers la page de l'événement (par exemple). Pour nous, c’est le champ 'Lien destination' à ne surtout pas oublier de remplir ! Un grand pouvoir implique de grandes responsabilités… et de vérifier ses liens, évidemment. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vel nulla a eros mattis maximus. Duis diam sapien, maximus et sem eget, pretium semper metus. Duis nisi sem, eleifend vel ullamcorper ac, aliquam quis urna. Praesent porttitor in ipsum sed ultrices.",
             img: "https://images.unsplash.com/photo-1544531586-fde5298cdd40?auto=format&fit=crop&w=600&q=80", 
             link: "https://google.fr", 
             span: 1, 
             highlight: false, 
             pos: {x: 50, y: 50} 
         },
-        // BLOC 5 : HIGHLIGHT
         {
             id: 5, 
-            title: "5. Mise en Avant", 
-            desc: "Cliquez sur l'étoile dans l'éditeur pour activer ce mode. Notez le liseré orange moderne à gauche qui attire l'attention.", 
+            title: "Le Coin VIP", 
+desc: "Quand une info est vraiment importante, on la met en avant avec l’étoile. Mais n’en abusons pas : si tout devient VIP, plus rien ne l’est vraiment. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vel nulla a eros mattis maximus. Duis diam sapien, maximus et sem eget, pretium semper metus. Duis nisi sem, eleifend vel ullamcorper ac, aliquam quis urna. Praesent porttitor in ipsum sed ultrices.",
             img: "https://images.unsplash.com/photo-1452587925148-ce544e77e70d?auto=format&fit=crop&w=600&q=80", 
             link: "#", 
             span: 1, 
             highlight: true, 
             pos: {x: 50, y: 50} 
         },
-        // BLOC 6 : GRANDE IMAGE
         {
             id: 6, 
-            title: "6. Grande Largeur", 
-            desc: "Utilisez la taille '3/3' pour une image panoramique ou un événement majeur. Cela coupe la monotonie de la lecture et crée une respiration visuelle dans la newsletter.", 
+            title: "L'Effet 'Wouah'", 
+desc: "Le format '3/3' crée un bel effet panoramique. C’est idéal pour une grande photo d’événement ou pour annoncer quelque chose de vraiment spécial. Ça rythme la lecture et ça en met plein la vue. Et oui, ce texte est un peu long… c’est uniquement pour tester la coupure, promis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vel nulla a eros mattis maximus. Duis diam sapien, maximus et sem eget, pretium semper metus. Duis nisi sem, eleifend vel ullamcorper ac, aliquam quis urna. Praesent porttitor in ipsum sed ultrices.",
             img: "https://images.unsplash.com/photo-1511192336575-5a79af67a629?auto=format&fit=crop&w=600&q=80", 
             link: "#", 
             span: 3, 
             highlight: false, 
             pos: {x: 50, y: 60} 
         },
-        // BLOC 7 : COMPATIBILITÉ
         {
             id: 7, 
-            title: "7. Mobile First", 
-            desc: "Tout ce que vous créez ici s'adapte automatiquement sur mobile. Testez le bouton 'Mobile' en haut pour voir le résultat empilé.", 
+            title: "Dans leur Poche", 
+desc: "Beaucoup d’adhérents liront tout ça sur leur téléphone. Le bouton 'Mobile' nous montre exactement ce qu’ils verront : des blocs bien empilés, lisibles et propres. Ce texte un peu long — trop long, vraiment trop long — est là uniquement pour tester la coupure.",
             img: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=800&q=80", 
             link: "#", 
             span: 2, 
             highlight: false, 
             pos: {x: 50, y: 40} 
         },
-        // BLOC 8 : EXPORT
         {
             id: 8, 
-            title: "8. Export Outlook", 
-            desc: "Pour finir : cochez 'Figer images' en haut si vos destinataires utilisent Outlook. Cela garantit que vos recadrages seront respectés partout.", 
+            title: "Le Cas d'Outlook", 
+desc: "L’option 'Figer image' est à utiliser seulement en dernier recours. Pour éviter que nos belles images recadrées se transforment en bouillie de pixels (ou s’affichent en format XXL) chez certains adhérents, on coche 'Figer images'. Une petite case pour nous, mais une grande garantie de professionnalisme pour eux. Et oui, ce texte s’étire un peu… mais c’est pour tester la coupure. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut vel nulla a eros mattis maximus. Duis diam sapien, maximus et sem eget, pretium semper metus. Duis nisi sem, eleifend vel ullamcorper ac, aliquam quis urna. Praesent porttitor in ipsum sed ultrices.",
             img: "https://images.unsplash.com/photo-1544531586-fde5298cdd40?auto=format&fit=crop&w=600&q=80", 
             link: "#", 
             span: 1, 
@@ -146,8 +139,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // --- GESTION INPUTS ---
 function initInputs() {
     bindInput('inpDate', 'date');
-    bindInput('inpNewsletterTitle', 'newsletterTitle');
-    bindInput('inpIntro', 'introText');
+    renderHeaderEditor();
     
     // Footer bindings
     bindInput('inpFooter', 'footerText');
@@ -349,6 +341,51 @@ window.toggleButton = (idx) => {
 };
 window.updateItem = (idx, key, val) => { state.items[idx][key] = val; renderPreview(); };
 
+// --- NOUVELLE GESTION DE L'EN-TÊTE ---
+
+// Met à jour une propriété simple (de premier niveau) dans l'état global
+window.updateState = (key, value) => {
+    state[key] = value;
+    renderPreview();
+};
+
+// Inverse l'ordre de l'intro et du titre
+window.toggleIntroTitleOrder = () => {
+    state.introFirst = !state.introFirst;
+    renderHeaderEditor();
+    renderPreview();
+};
+
+// Dessine les champs de l'éditeur pour l'intro et le titre
+function renderHeaderEditor() {
+    const container = document.getElementById('introTitleEditorContainer');
+    if (!container) return;
+
+    const introEditor = `
+        <div class="group pt-2">
+            <div class="flex items-center justify-between mb-1">
+                <label class="block text-[10px] uppercase font-bold text-gray-400">Introduction</label>
+                <button onclick="toggleIntroTitleOrder()" title="${state.introFirst ? 'Déplacer sous le titre' : 'Déplacer au-dessus du titre'}" class="text-gray-400 hover:text-indigo-600 transition-colors p-0.5 rounded-full">
+                    <i data-lucide="${state.introFirst ? 'arrow-down' : 'arrow-up'}" class="w-3.5 h-3.5"></i>
+                </button>
+            </div>
+            <textarea oninput="updateState('introText', this.value)" id="inpIntro" rows="3" class="w-full border rounded p-2 text-sm focus:border-blue-600 outline-none bg-gray-50" placeholder="Votre texte d'introduction...">${state.introText}</textarea>
+        </div>
+    `;
+
+    const titleEditor = `
+        <div class="group">
+            <label class="block text-[10px] uppercase font-bold text-gray-400 mb-1">Titre Newsletter</label>
+            <input oninput="updateState('newsletterTitle', this.value)" type="text" id="inpNewsletterTitle" class="w-full border-b border-gray-300 focus:border-blue-600 outline-none py-1 text-sm bg-transparent transition-colors" placeholder="Titre de la newsletter..." value="${state.newsletterTitle}">
+        </div>
+    `;
+
+    container.innerHTML = state.introFirst ? introEditor + titleEditor : titleEditor + introEditor;
+    lucide.createIcons();
+}
+
+
+
 window.setMode = (mode) => {
     viewMode = mode;
     document.getElementById('btnDesktop').className = mode === 'desktop' ? "p-2 rounded bg-white shadow text-blue-600" : "p-2 rounded text-gray-500 hover:bg-white/50";
@@ -504,8 +541,13 @@ function renderPreview() {
                     </div>
                     <!-- Intro -->
                     <div style="padding: 40px 30px; text-align: left;">
-                        <p style="color: #4b5563; font-size: 16px; line-height: 26px; text-align: justify; margin-bottom: 15px;">${state.introText.replace(/\n/g, '<br>')}</p>
-                        <h2 style="color: #1f2937; font-size: 22px; margin:0; font-weight: 700;">${state.newsletterTitle}</h2>
+                        ${
+                            (() => {
+                                const intro = `<p style="color: #4b5563; font-size: 16px; line-height: 26px; text-align: justify; margin-bottom: 15px;">${state.introText.replace(/\n/g, '<br>')}</p>`;
+                                const title = `<h2 style="color: #1f2937; font-size: 22px; margin:0; font-weight: 700;">${state.newsletterTitle}</h2>`;
+                                return state.introFirst ? intro + title : title + intro;
+                            })()
+                        }
                     </div>
                     <!-- Grid -->
                     <div style="padding: 0 0 40px 0; font-size: 0;">
@@ -735,10 +777,13 @@ function generateEmailString(items) {
                         </tr>
                         <tr>
                             <td style="padding: 40px 30px; text-align: left;" class="mobile-pad">
-                                <p class="mobile-text justify-text" style="color: #4b5563; font-size: 16px; line-height: 26px; text-align: justify; margin-bottom: 15px;">
-                                    ${state.introText.replace(/\n/g, '<br>')}
-                                </p>
-                                <h2 style="color: #1f2937; font-size: 22px; margin: 0; font-weight: 700;">${state.newsletterTitle}</h2>
+                                ${
+                                    (() => {
+                                        const intro = `<p class="mobile-text justify-text" style="color: #4b5563; font-size: 16px; line-height: 26px; text-align: justify; margin-bottom: 15px;">${state.introText.replace(/\n/g, '<br>')}</p>`;
+                                        const title = `<h2 style="color: #1f2937; font-size: 22px; margin: 0; font-weight: 700;">${state.newsletterTitle}</h2>`;
+                                        return state.introFirst ? intro + title : title + intro;
+                                    })()
+                                }
                             </td>
                         </tr>
                         <tr>
@@ -782,3 +827,56 @@ function generateEmailString(items) {
 </body>
 </html>`;
 }
+
+// --- SAVE & LOAD STATE ---
+window.saveState = () => {
+    try {
+        const stateString = JSON.stringify(state, null, 2);
+        const blob = new Blob([stateString], {type: 'application/json'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `newsletter-state-${new Date().toISOString().slice(0,10)}.json`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+    } catch (error) {
+        console.error("Erreur lors de la sauvegarde :", error);
+        alert("La sauvegarde a échoué.");
+    }
+}
+
+window.loadState = (event) => {
+    const file = event.target.files[0];
+    if (!file) {
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = (e) => {
+        try {
+            const loadedState = JSON.parse(e.target.result);
+            
+            // Replace state properties instead of the whole object
+            // to keep references intact if any exist.
+            Object.keys(loadedState).forEach(key => {
+                state[key] = loadedState[key];
+            });
+
+            // Re-initialize the UI with the new state
+            initInputs();
+            renderBlocks();
+            renderPreview();
+
+        } catch (error) {
+            console.error("Erreur lors du chargement :", error);
+            alert("Le chargement a échoué. Le fichier est peut-être corrompu.");
+        }
+    };
+    reader.readAsText(file);
+
+    // Reset file input to allow loading the same file again
+    event.target.value = '';
+}
+
