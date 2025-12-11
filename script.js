@@ -527,11 +527,11 @@ function renderPreview() {
             <center>
                 <div style="width: ${viewMode==='mobile'?'100%':'600px'}; background-color: #ffffff; text-align: center; border-radius: 8px; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);">
                     <!-- Header -->
-                    <div style="background-color: #9ad2d9; padding: 20px 30px;">
+                    <div style="background-color: #ffffff; padding: 20px 30px; border-top: 3px solid #9ad2d9; border-bottom: 1px solid #e5e7eb;">
                         <table width="100%" cellspacing="0" cellpadding="0">
                             <tr>
                                 <td align="left">
-                                    <img src="https://zupimages.net/up/24/49/w5j8.png" alt="Logo" width="50">
+                                    <img src="https://integ02-mdsl.archimed.fr/Default/basicimagedownload.ashx?itemGuid=1D03950E-D5DF-447B-9AC9-33F4A3EB9BB2" alt="Logo" width="120">
                                 </td>
                                 <td align="right">
                                     <span style="background-color: #f29f05; color: #ffffff; padding: 8px 15px; border-radius: 3px; font-size: 12px; font-weight: bold;">${state.date}</span>
@@ -762,11 +762,11 @@ function generateEmailString(items) {
                 <td align="center">
                     <table border="0" cellpadding="0" cellspacing="0" width="600" class="main-container" style="background-color: #ffffff; overflow: hidden; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); border-radius: 8px;">
                         <tr>
-                            <td style="background-color: #9ad2d9; padding: 20px 30px;">
+                            <td style="background-color: #ffffff; padding: 20px 30px; border-top: 3px solid #9ad2d9; border-bottom: 1px solid #e5e7eb;">
                                 <table width="100%" cellspacing="0" cellpadding="0">
                                     <tr>
                                         <td align="left">
-                                            <img src="https://zupimages.net/up/24/49/w5j8.png" alt="Logo" width="50">
+                                            <img src="https://integ02-mdsl.archimed.fr/Default/basicimagedownload.ashx?itemGuid=1D03950E-D5DF-447B-9AC9-33F4A3EB9BB2" alt="Logo" width="120">
                                         </td>
                                         <td align="right" style="font-family: 'Atkinson Hyperlegible', sans-serif;">
                                             <span style="background-color: #f29f05; color: #ffffff; padding: 8px 15px; border-radius: 3px; font-size: 12px; font-weight: bold;">${state.date}</span>
