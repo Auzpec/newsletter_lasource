@@ -7,7 +7,6 @@ const state = {
     newsletterTitle: "Les rendez-vous de la médiathèque...",
     introText: "",
     footerText: "© 2025 Communication Interne - Tous droits réservés",
-    unsubscribeLink: "#",
     footerContacts: [
         {
             title: "Médiathèque La source",
@@ -143,7 +142,6 @@ function initInputs() {
     
     // Footer bindings
     bindInput('inpFooter', 'footerText');
-    bindInput('inpUnsubscribe', 'unsubscribeLink');
     
     bindInput('inpContact1Title', 'footerContacts.0.title');
     const inpContact1Details = document.getElementById('inpContact1Details');
@@ -559,8 +557,7 @@ function renderPreview() {
                             <tr>
                                 <td colspan="2" style="padding-bottom: 20px; border-bottom: 1px solid #e5e7eb; text-align: center;">
                                     <p style="color: #9ca3af; font-size: 12px; margin:0; line-height: 18px;">
-                                        ${state.footerText}<br>
-                                        <a href="${state.unsubscribeLink}" style="color:#6b7280; text-decoration: underline;">Se désinscrire</a>
+                                        ${state.footerText}
                                     </p>
                                 </td>
                             </tr>
@@ -710,25 +707,29 @@ function generateEmailString(items) {
 
         return `
         <!-- BLOC ${item.title} -->
-        <div class="responsive-col" style="display: inline-block; width: ${w}px; vertical-align: top; text-align: center; margin-bottom: 40px; box-sizing: border-box; ${borderRight}">
-            <!-- TABLEAU INTERNE POUR BORDURE GAUCHE -->
-            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-left: 4px solid ${borderColor}; background-color: ${bgContent};">
-                <tr>
-                    <td style="padding: 0 10px 30px;">
-                        <div style="width: 100%; height: ${FIXED_HEIGHT}px; overflow: hidden; margin-bottom: 24px;">
-                            <img src="${item.img}" alt="${item.title}" class="mobile-img" style="${imgCss}">
-                        </div>
-                        <div style="height: 44px; overflow: hidden; margin-bottom: 12px;">
-                            <h3 style="color: #1f2937; font-size: 18px; font-family: 'Atkinson Hyperlegible', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 700; margin: 0; line-height: 22px; text-transform: uppercase; letter-spacing: 0.5px;">${item.title}</h3>
-                        </div>
-                        <div style="${item.isSpecial ? 'height: auto; margin-bottom: 24px;' : 'height: 88px; overflow: hidden; margin-bottom: 24px;'}">
-                            <p class="justify-text" style="color: #4b5563; font-size: 14px; line-height: 22px; margin: 0; font-family: 'Atkinson Hyperlegible', 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: justify;">${item.desc.replace(/\n/g, '<br>')}</p>
-                        </div>
-                        ${item.hasButton !== false ? `<a href="${item.link}" style="display: inline-block; background-color: #333; color: #fff; text-decoration: none; padding: 8px 28px; border-radius: 3px; font-size: 12px; font-family: 'Atkinson Hyperlegible', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: bold; text-transform: uppercase;">Voir +</a>` : ''}
-                    </td>
-                </tr>
-            </table>
-        </div>`;
+        <table border="0" cellpadding="0" cellspacing="0" class="responsive-col" style="display: inline-block; width: ${w}px; vertical-align: top; text-align: center; margin-bottom: 40px; box-sizing: border-box; ${borderRight}">
+            <tr>
+                <td>
+                    <!-- TABLEAU INTERNE POUR BORDURE GAUCHE -->
+                    <table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-left: 4px solid ${borderColor}; background-color: ${bgContent};">
+                        <tr>
+                            <td style="padding: 0 10px 30px;">
+                                <div style="width: 100%; height: ${FIXED_HEIGHT}px; overflow: hidden; margin-bottom: 24px;">
+                                    <img src="${item.img}" alt="${item.title}" class="mobile-img" style="${imgCss}">
+                                </div>
+                                <div style="height: 44px; overflow: hidden; margin-bottom: 12px;">
+                                    <h3 style="color: #1f2937; font-size: 18px; font-family: 'Atkinson Hyperlegible', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: 700; margin: 0; line-height: 22px; text-transform: uppercase; letter-spacing: 0.5px;">${item.title}</h3>
+                                </div>
+                                <div style="${item.isSpecial ? 'height: auto; margin-bottom: 24px;' : 'height: 88px; overflow: hidden; margin-bottom: 24px;'}">
+                                    <p class="justify-text" style="color: #4b5563; font-size: 14px; line-height: 22px; margin: 0; font-family: 'Atkinson Hyperlegible', 'Helvetica Neue', Helvetica, Arial, sans-serif; text-align: justify;">${item.desc.replace(/\n/g, '<br>')}</p>
+                                </div>
+                                ${item.hasButton !== false ? `<a href="${item.link}" style="display: inline-block; background-color: #333; color: #fff; text-decoration: none; padding: 8px 28px; border-radius: 3px; font-size: 12px; font-family: 'Atkinson Hyperlegible', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-weight: bold; text-transform: uppercase;">Voir +</a>` : ''}
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>`;
     }).join('');
 
     return `<!DOCTYPE html>
@@ -797,8 +798,7 @@ function generateEmailString(items) {
                                     <tr>
                                         <td align="center" colspan="2" style="padding-bottom: 20px; border-bottom: 1px solid #e5e7eb;">
                                             <p style="color: #9ca3af; font-size: 12px; margin: 0; line-height: 18px;">
-                                                ${state.footerText}<br>
-                                                <a href="${state.unsubscribeLink}" style="color: #6b7280; text-decoration: underline;">Se désinscrire</a>
+                                                ${state.footerText}
                                             </p>
                                         </td>
                                     </tr>
